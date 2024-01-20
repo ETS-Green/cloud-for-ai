@@ -29,6 +29,11 @@ class DataController:
         """removes null values and redundant columns from the dataset"""
         self.df = self.df.drop(columns=["PassengerId", "Name", "Ticket", "Fare", "Cabin", "Embarked"])
         self.df = self.df.dropna()
+
+        self.df['Sex'] = self.df['Sex'].astype('category')
+        cat_columns = self.df.select_dtypes('category').columns
+        self.df[cat_columns] = self.df[cat_columns].apply(lambda x: x.cat.codes)
+
         print("Data processed successfully")
 
     def __split_data(self):

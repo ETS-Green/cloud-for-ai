@@ -1,7 +1,7 @@
 from data_controller import DataController
 from model_controller import ModelController
 
-if __name__ == "main":
+if __name__ == "__main__":
     data_controller = DataController()
     model_controller = ModelController()
 

@@ -11,10 +11,11 @@ class DataController:
         self.X = None
         self.y = None
 
+        self.scaler = StandardScaler()
+
         self.__load_data()
         self.__preprocess_data()
         self.__split_data()
-        self.__standardize_data()
 
     def get_datasets(self, test_size: float = 0.2, random_state: int = None):
         """Creates training and test datasets from the stored data"""
@@ -22,7 +23,7 @@ class DataController:
 
     def __load_data(self):
         """loads a CSV into the controller"""
-        self.df = pd.read_csv("./data/Titanic-Dataset.csv")
+        self.df = pd.read_csv("../data/Titanic-Dataset.csv")
         print("Data loaded successfully")
 
     def __preprocess_data(self):
@@ -48,9 +49,3 @@ class DataController:
         self.df = None
 
         print("Data split successfully")
-
-    def __standardize_data(self):
-        """Standardizes the stored data"""
-        sc_x = StandardScaler()
-        self.X = sc_x.fit_transform(self.X)
-        print("Data standardized successfully")
